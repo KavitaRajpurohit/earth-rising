@@ -1,0 +1,24 @@
+use('education');
+
+db.universities.find();
+db.courses.find();
+
+db.universities.aggregate([
+    {$match: {country: "Spain", city: "Salamanca"}},
+    {
+    $project: {
+        _id: 0,
+        country:1,
+        city: 1,
+        name: 1,
+        students: 1
+}},
+    $group: {
+      _id: name,
+      fieldN: {
+        accumulatorN: expressionN
+      }
+    }
+]);
+
+
